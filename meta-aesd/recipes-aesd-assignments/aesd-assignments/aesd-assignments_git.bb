@@ -8,7 +8,8 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-velascorbou
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "a9d0f9cdec70cb10887ca7fb9fe6dc2488061e76"
+SRCREV = "9d0f042e538bf567f75efada632d1856ab39c896"
+#SRCREV = "${AUTOREV}"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
@@ -28,6 +29,9 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 
 INITSCRIPT_NAME:${PN} = "aesdsocket-start-stop"
+
+DEPENDS += "libgcc"
+RDEPENDS:${PN} += "libgcc"
 
 do_configure () {
 	:
